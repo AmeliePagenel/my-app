@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { NodeApiService } from './../nodeApi/node-api.service';
 import { Chart } from 'chart.js';
 import 'rxjs/add/operator/map';
@@ -7,17 +7,17 @@ import 'rxjs/add/operator/map';
   selector: 'app-barchart',
   templateUrl: './barchart.component.html',
   styleUrls: ['./barchart.component.css'],
+  inputs: ['parentTopic'],
+  outputs: ['barChartEvent'],
 })
 export class BarchartComponent implements OnInit {
   constructor(private nodeApi: NodeApiService) {}
 
-  topic: string;
+  public parentTopic: string;
 
-  ngOnInit(): void {
-    this.onSubmit();
-  }
+  ngOnInit(): void {}
   onSubmit() {
-    this.nodeApi.getTweetsByTopic('trump').subscribe((res) => {
+    this.nodeApi.getTweetsByTopic(this.parentTopic).subscribe((res) => {
       // transforme un objet en array de tweets
 
       let tableauObjet: any = [];
@@ -78,6 +78,13 @@ export class BarchartComponent implements OnInit {
         options: {
           legend: {
             display: false,
+          },
+          title: {
+            display: true,
+            text: 'Moyenne des scores / jour',
+            fontSize: 22,
+            fontFamily: 'Helvetica',
+            padding: 10,
           },
         },
       });

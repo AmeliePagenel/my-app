@@ -7,14 +7,17 @@ import 'rxjs/add/operator/map';
   selector: 'app-bubblechart',
   templateUrl: './bubblechart.component.html',
   styleUrls: ['./bubblechart.component.css'],
+  inputs: ['parentTopic'],
 })
 export class BubblechartComponent implements OnInit {
   constructor(private nodeApi: NodeApiService) {}
 
-  topic: string;
+  public parentTopic: string;
 
-  ngOnInit(): void {
-    this.nodeApi.getTweetsByTopic('trump').subscribe((res) => {
+  ngOnInit(): void {}
+
+  onSubmit() {
+    this.nodeApi.getTweetsByTopic(this.parentTopic).subscribe((res) => {
       // transformation en array de tweets
       let tableauObjet: any = [];
       for (let r of [res]) {
@@ -104,6 +107,13 @@ export class BubblechartComponent implements OnInit {
                 },
               },
             ],
+          },
+          title: {
+            display: true,
+            text: 'Répartition des scores / jour',
+            fontSize: 22,
+            fontFamily: 'Helvetica',
+            padding: 10,
           },
         },
       });
