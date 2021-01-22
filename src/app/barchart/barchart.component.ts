@@ -84,7 +84,7 @@ export class BarchartComponent implements OnInit {
             text: 'Moyenne des scores / jour',
             fontSize: 22,
             fontFamily: 'Helvetica',
-            padding: 10,
+            padding: 20,
           },
         },
       });

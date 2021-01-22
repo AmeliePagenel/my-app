@@ -58,10 +58,16 @@ export class BubblechartComponent implements OnInit {
         if (formattedDatesArray[i].y > -4 && formattedDatesArray[i].y <= -2) {
           tabMinusFourToMinusTwo.push(formattedDatesArray[i]);
         }
-        if (formattedDatesArray[i].y >= -4) {
+        if (formattedDatesArray[i].y < -4) {
           tabMinusFourAndLess.push(formattedDatesArray[i]);
         }
       }
+
+      console.log(tabSixAndMore);
+      console.log(tabTwoToSix);
+      console.log(tabMinusTwoToTwo);
+      console.log(tabMinusFourToMinusTwo);
+      console.log(tabMinusFourAndLess);
 
       let chart = new Chart('bubbleChart', {
         type: 'bubble',
@@ -113,7 +119,10 @@ export class BubblechartComponent implements OnInit {
             text: 'Répartition des scores / jour',
             fontSize: 22,
             fontFamily: 'Helvetica',
-            padding: 10,
+            padding: 20,
+          },
+          legend: {
+            padding: 20,
           },
         },
       });

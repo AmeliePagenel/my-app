@@ -14,7 +14,7 @@ export class NodeApiService {
 
   //GET ALL TWEETS
   getTweets() {
-    //const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.get<Tweet[]>(API_URL + '/tweets').map((result) => result);
   }
 
